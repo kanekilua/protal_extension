@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.protal.das.dao.GroupMapper" >
+  <resultMap id="BaseResultMap" type="com.protal.das.beans.entity.Group" >
+    <id column="groupid" property="groupid" jdbcType="BIGINT" />
+    <result column="companyid" property="companyid" jdbcType="BIGINT" />
+    <result column="creatoruserid" property="creatoruserid" jdbcType="BIGINT" />
+    <result column="classnameid" property="classnameid" jdbcType="BIGINT" />
+    <result column="classpk" property="classpk" jdbcType="BIGINT" />
+    <result column="parentgroupid" property="parentgroupid" jdbcType="BIGINT" />
+    <result column="livegroupid" property="livegroupid" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="type_" property="type" jdbcType="INTEGER" />
+    <result column="typesettings" property="typesettings" jdbcType="VARCHAR" />
+    <result column="friendlyurl" property="friendlyurl" jdbcType="VARCHAR" />
+    <result column="active_" property="active" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    groupid, companyid, creatoruserid, classnameid, classpk, parentgroupid, livegroupid, 
+    name, description, type_, typesettings, friendlyurl, active_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from group_
+    where groupid = #{groupid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from group_
+    where groupid = #{groupid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.protal.das.beans.entity.Group" >
+    <selectKey resultType="java.lang.Long" keyProperty="groupid" order="AFTER" >
+      Postgresql
+    </selectKey>
+    insert into group_ (companyid, creatoruserid, classnameid, 
+      classpk, parentgroupid, livegroupid, 
+      name, description, type_, 
+      typesettings, friendlyurl, active_
+      )
+    values (#{companyid,jdbcType=BIGINT}, #{creatoruserid,jdbcType=BIGINT}, #{classnameid,jdbcType=BIGINT}, 
+      #{classpk,jdbcType=BIGINT}, #{parentgroupid,jdbcType=BIGINT}, #{livegroupid,jdbcType=BIGINT}, 
+      #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{typesettings,jdbcType=VARCHAR}, #{friendlyurl,jdbcType=VARCHAR}, #{active,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.protal.das.beans.entity.Group" >
+    <selectKey resultType="java.lang.Long" keyProperty="groupid" order="AFTER" >
+      Postgresql
+    </selectKey>
+    insert into group_
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyid != null" >
+        companyid,
+      </if>
+      <if test="creatoruserid != null" >
+        creatoruserid,
+      </if>
+      <if test="classnameid != null" >
+        classnameid,
+      </if>
+      <if test="classpk != null" >
+        classpk,
+      </if>
+      <if test="parentgroupid != null" >
+        parentgroupid,
+      </if>
+      <if test="livegroupid != null" >
+        livegroupid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="type != null" >
+        type_,
+      </if>
+      <if test="typesettings != null" >
+        typesettings,
+      </if>
+      <if test="friendlyurl != null" >
+        friendlyurl,
+      </if>
+      <if test="active != null" >
+        active_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyid != null" >
+        #{companyid,jdbcType=BIGINT},
+      </if>
+      <if test="creatoruserid != null" >
+        #{creatoruserid,jdbcType=BIGINT},
+      </if>
+      <if test="classnameid != null" >
+        #{classnameid,jdbcType=BIGINT},
+      </if>
+      <if test="classpk != null" >
+        #{classpk,jdbcType=BIGINT},
+      </if>
+      <if test="parentgroupid != null" >
+        #{parentgroupid,jdbcType=BIGINT},
+      </if>
+      <if test="livegroupid != null" >
+        #{livegroupid,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="typesettings != null" >
+        #{typesettings,jdbcType=VARCHAR},
+      </if>
+      <if test="friendlyurl != null" >
+        #{friendlyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.protal.das.beans.entity.Group" >
+    update group_
+    <set >
+      <if test="companyid != null" >
+        companyid = #{companyid,jdbcType=BIGINT},
+      </if>
+      <if test="creatoruserid != null" >
+        creatoruserid = #{creatoruserid,jdbcType=BIGINT},
+      </if>
+      <if test="classnameid != null" >
+        classnameid = #{classnameid,jdbcType=BIGINT},
+      </if>
+      <if test="classpk != null" >
+        classpk = #{classpk,jdbcType=BIGINT},
+      </if>
+      <if test="parentgroupid != null" >
+        parentgroupid = #{parentgroupid,jdbcType=BIGINT},
+      </if>
+      <if test="livegroupid != null" >
+        livegroupid = #{livegroupid,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type_ = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="typesettings != null" >
+        typesettings = #{typesettings,jdbcType=VARCHAR},
+      </if>
+      <if test="friendlyurl != null" >
+        friendlyurl = #{friendlyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        active_ = #{active,jdbcType=BIT},
+      </if>
+    </set>
+    where groupid = #{groupid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.protal.das.beans.entity.Group" >
+    update group_
+    set companyid = #{companyid,jdbcType=BIGINT},
+      creatoruserid = #{creatoruserid,jdbcType=BIGINT},
+      classnameid = #{classnameid,jdbcType=BIGINT},
+      classpk = #{classpk,jdbcType=BIGINT},
+      parentgroupid = #{parentgroupid,jdbcType=BIGINT},
+      livegroupid = #{livegroupid,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      type_ = #{type,jdbcType=INTEGER},
+      typesettings = #{typesettings,jdbcType=VARCHAR},
+      friendlyurl = #{friendlyurl,jdbcType=VARCHAR},
+      active_ = #{active,jdbcType=BIT}
+    where groupid = #{groupid,jdbcType=BIGINT}
+  </update>
+  <select id="listName" resultType="String">
+    select
+    name
+    from group_
+    where type_ = 1
+    and active_ = true
+    and name not in ('Guest', 'Template Site')
+    order by name
+  </select>
+  <select id="countActiveSite" resultType="INTEGER">
+    select
+    count(*)
+    from group_
+    where type_ = 1
+    and active_ = true
+    and name not in ('Guest', 'Template Site')
+  </select>
+</mapper>

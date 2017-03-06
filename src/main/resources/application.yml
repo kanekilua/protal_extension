@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  context-path: /webapi
+
+spring:
+  application:
+    name: protal_extension
+
+tomcat:
+  uri-encoding: UTF-8
+  remote-ip-header: x-forwarded-for
+
+#  druid:
+#      url: jdbc:postgresql://172.26.100.227:5432/lportal?characterEncoding=UTF-8
+#      username: usr_lportal
+#      password: l9mesp!
+#      initial-size: 1
+#      min-idle: 1
+#      max-active: 20
+#      test-on-borrow: true
+
+druid:
+      url: jdbc:postgresql://172.26.100.227:5432/lportal?characterEncoding=UTF-8
+      username: usr_lportal
+      password: l9mesp!
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+
+mybatis:
+    type-aliases-package: com.protal.das.bean.entity
+    mapper-locations: classpath:mapper/*.xml
+
+
