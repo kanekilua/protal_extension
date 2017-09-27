@@ -20,6 +20,7 @@ public class GroupController {
 
     @GetMapping
     public List<String> listName(){
+        System.out.printf("adfsdf");
         return groupService.listName();
     }
 
